@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
-import Phaser from 'phaser';
-import GameUI from './GameUI';
+import { useEffect, useRef, useState } from "react";
+import Phaser from "phaser";
+import GameUI from "./GameUI";
 
 // Import game scenes
-import BootScene from '../game/scenes/BootScene';
-import PreloadScene from '../game/scenes/PreloadScene';
-import MainMenuScene from '../game/scenes/MainMenuScene';
-import GameScene from '../game/scenes/GameScene';
+import BootScene from "../game/scenes/BootScene";
+import PreloadScene from "../game/scenes/PreloadScene";
+import MainMenuScene from "../game/scenes/MainMenuScene";
+import GameScene from "../game/scenes/GameScene";
 
 const Game = () => {
   const gameContainerRef = useRef(null);
@@ -22,43 +22,38 @@ const Game = () => {
     // Game configuration
     const config = {
       type: Phaser.AUTO,
-      parent: 'game-container',
-      width: 480,  // Mobile-friendly width
+      parent: "game-container",
+      width: 480, // Mobile-friendly width
       height: 800, // Vertical orientation
-      backgroundColor: '#333333',
+      backgroundColor: "#333333",
       physics: {
-        default: 'matter',
+        default: "matter",
         matter: {
           debug: false,
           gravity: { y: 0 },
-          setBounds: true
-        }
+          setBounds: true,
+        },
       },
       // Mobile scaling options
       scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
         width: 480,
-        height: 800
+        height: 800,
       },
       // Define scene classes
-      scene: [
-        BootScene,
-        PreloadScene,
-        MainMenuScene,
-        GameScene
-      ]
+      scene: [BootScene, PreloadScene, MainMenuScene, GameScene],
     };
 
     // Create the game instance
     const game = new Phaser.Game(config);
-    
+
     // Store the game instance
     gameInstanceRef.current = game;
-    
+
     // Add global game variables (if needed by your original code)
     window.game = game;
-    
+
     // Mark the game as ready for the UI
     setGameReady(true);
 
@@ -73,17 +68,19 @@ const Game = () => {
   }, [setGameReady]);
 
   return (
-    <div className="game-wrapper" style={{ position: 'relative' }}>
-      <div 
-        id="game-container" 
+    <div className="game-wrapper bg-black"> 
+      <div className=" bg-black w-full  h-20 ">
+        {gameReady && <GameUI gameInstance={gameInstanceRef.current} />}
+      </div>
+      <div
+        className="w-full h-full"
+        id="game-container"
         ref={gameContainerRef}
         style={{
-          width: '100%',
-          height: '100%',
-          touchAction: 'none'
+          touchAction: "none",
         }}
       />
-      {gameReady && <GameUI gameInstance={gameInstanceRef.current} />}
+     
     </div>
   );
 };

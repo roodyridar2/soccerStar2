@@ -92,7 +92,7 @@ class GameScene extends Phaser.Scene {
     this.createBall();
 
     // Create UI
-    this.createUI();
+    // this.createUI();
 
     // Setup collisions
     this.setupCollisions();
@@ -278,10 +278,10 @@ class GameScene extends Phaser.Scene {
     // White team positions (bottom half of the field)
     const whitePositions = [
       { x: 160, y: 600 },
-      // { x: 320, y: 600 },
-      // { x: 240, y: 650 },
-      // { x: 180, y: 550 },
-      // { x: 300, y: 550 },
+      { x: 320, y: 600 },
+      { x: 240, y: 650 },
+      { x: 180, y: 550 },
+      { x: 300, y: 550 },
     ];
 
     // Create red players

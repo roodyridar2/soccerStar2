@@ -1,5 +1,5 @@
-import './App.css'
-import Game from './components/Game'
+import "./App.css";
+import Game from "./components/Game";
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
         <Game />
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
